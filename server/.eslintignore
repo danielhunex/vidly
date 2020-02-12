@@ -1,0 +1,12 @@
+src/registerServiceWorker.ts
+src/**/__tests__/**
+!**/.eslintrc*
+node_modules*
+dist
+*.svg
+*.ico
+*.json
+.gitignore
+*.md
+*.log
+*.lock

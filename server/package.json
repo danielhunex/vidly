@@ -1,0 +1,54 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "prod": "node dist\\index.js",
+    "start": "node --inspect  -r ts-node/register index.ts",
+    "dev": "nodemon index.ts",
+    "lint": "eslint .\\src\\**\\*.ts",
+    "lint-fix": "eslint --fix .\\src\\**\\*.ts"
+  },
+
+  "_moduleAliases": {
+      "@DataAccess": "dist/src/dataAccess",
+      "@Libs": "dist/src/libs/",
+      "@Middlewares": "dist/src/middlewares",
+      "@Resouces": "/dist/src/resources"    
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "^17.1.0",
+    "@types/debug": "^4.1.5",
+    "@types/hapi__joi": "^16.0.7",
+    "@types/helmet": "0.0.45",
+    "@types/morgan": "^1.7.37",
+    "debug": "^4.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "module-alias": "^2.2.2",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.5"
+  }
+}
