@@ -1,8 +1,8 @@
 import mongoose from '@DataAccess';
 
-const schema = new mongoose.Schema({
+export const GenreSchema = new mongoose.Schema({
   name: { type: String, required: true, minlength: 3, maxlength: 50 }
 });
 
-const Genre = mongoose.model('Genre', schema);
+const Genre = mongoose.model('Genre', GenreSchema);
 export default Genre;

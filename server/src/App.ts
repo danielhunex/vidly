@@ -1,9 +1,12 @@
 import debug from 'debug';
 import express from 'express';
-import genreRoute from './resources/genre';
-import customerRoute from './resources/customer';
 import helmet from 'helmet';
 import morgan from 'morgan';
+
+import { customerRoute } from '@Resources/customer';
+import { genreRoute } from '@Resources/genre';
+import { movieRoute } from '@Resources/movie';
+
 import applyMiddlewares, { handleError } from '@Middlewares';
 
 const tidlyDebug = debug('vidly:app');
@@ -24,6 +27,7 @@ if (app.get('env') === 'development') {
 
 app.use('/api/genres', genreRoute);
 app.use('/api/customers', customerRoute);
+app.use('/api/movies', movieRoute);
 
 applyMiddlewares(app);
 app.use(handleError);

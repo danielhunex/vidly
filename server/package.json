@@ -17,7 +17,7 @@
       "@DataAccess": "dist/src/dataAccess",
       "@Libs": "dist/src/libs/",
       "@Middlewares": "dist/src/middlewares",
-      "@Resouces": "/dist/src/resources"    
+      "@Resources": "dist/src/resources"   
   },
   "author": "",
   "license": "ISC",

@@ -1,6 +1,5 @@
 import * as dal from './dal';
 import Joi from '@hapi/joi';
-import ValidationError from '@Libs/vidlyError';
 import mongoose from '../../dataAccess';
 import VidlyError from '@Libs/vidlyError';
 
