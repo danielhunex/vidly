@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import * as svc from './service';
 import VidlyError from '@Libs/vidlyError';
+import { Genre } from './genreDbModel';
 
 export const getGenres = async (
   _req: Request,
@@ -27,7 +28,7 @@ export const postGenre = async (
 ): Promise<void | Response> => {
   const { body } = req;
   const { name } = body;
-  res.send(await svc.postGenre({ name }));
+  res.send(await svc.postGenre(new Genre({ name })));
 };
 
 export const putGenre = async (

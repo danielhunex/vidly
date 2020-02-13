@@ -8,16 +8,16 @@
     "build": "tsc",
     "prod": "node dist\\index.js",
     "start": "node --inspect  -r ts-node/register index.ts",
+    "debug": "node --inspect -r ts-node/register index.ts",
     "dev": "nodemon index.ts",
     "lint": "eslint .\\src\\**\\*.ts",
     "lint-fix": "eslint --fix .\\src\\**\\*.ts"
   },
-
   "_moduleAliases": {
-      "@DataAccess": "dist/src/dataAccess",
-      "@Libs": "dist/src/libs/",
-      "@Middlewares": "dist/src/middlewares",
-      "@Resources": "dist/src/resources"   
+    "@DataAccess": "dist/src/dataAccess",
+    "@Libs": "dist/src/libs/",
+    "@Middlewares": "dist/src/middlewares",
+    "@Resources": "dist/src/resources"
   },
   "author": "",
   "license": "ISC",

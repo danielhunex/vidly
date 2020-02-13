@@ -2,6 +2,7 @@ import * as dal from './dal';
 import Joi from '@hapi/joi';
 import mongoose from '../../dataAccess';
 import VidlyError from '@Libs/vidlyError';
+import { GenreType } from './genreDbModel';
 
 function validate(genre: object): Joi.ValidationResult {
   const schema = Joi.object({
@@ -22,9 +23,9 @@ export const getGenreById = async (
   return await dal.getGenreById(id);
 };
 
-export const postGenre = async (genre: {
-  name: string;
-}): Promise<mongoose.Document> => {
+export const postGenre = async (
+  genre: GenreType
+): Promise<mongoose.Document> => {
   const { error } = validate(genre);
   if (error) {
     throw new VidlyError(400, error.details[0].message);

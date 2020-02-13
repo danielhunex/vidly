@@ -1,15 +1,13 @@
 import mongoose from '@DataAccess';
-import Customer from './customerModel';
+import Customer, { CustomerType } from './customerDbModel';
 
 export const getAll = async (): Promise<mongoose.Document[]> => {
   return await Customer.find();
 };
 
-export const saveCustomer = async (customer: {
-  name: string;
-  isGold: boolean;
-  phone: string;
-}): Promise<mongoose.Document> => {
+export const saveCustomer = async (
+  customer: CustomerType
+): Promise<mongoose.Document> => {
   const newCustomer = new Customer(customer);
   return await newCustomer.save();
 };
@@ -22,7 +20,7 @@ export const getCustomerById = async (
 
 export const updateCustomer = async (
   id: string,
-  customer: { name: string; isGold: boolean; phone: string }
+  customer: CustomerType
 ): Promise<mongoose.Document | null> => {
   return await Customer.findOneAndUpdate(id, customer, { new: true });
 };

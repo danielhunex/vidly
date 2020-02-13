@@ -1,4 +1,4 @@
-import Genre from './genreModel';
+import { Genre, GenreType } from './genreDbModel';
 import mongoose from '@DataAccess';
 
 export const getAll = async (): Promise<mongoose.Document[]> => {
@@ -11,9 +11,9 @@ export const getGenreById = async (
   return await Genre.findById(id);
 };
 
-export const saveGenre = async (genre: {
-  name: string;
-}): Promise<mongoose.Document> => {
+export const saveGenre = async (
+  genre: GenreType
+): Promise<mongoose.Document> => {
   const newGenre = new Genre(genre);
   return await newGenre.save();
 };

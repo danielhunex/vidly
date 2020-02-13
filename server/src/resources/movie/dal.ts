@@ -1,8 +1,8 @@
 import mongoose from '@DataAccess';
-import Movie, { MovieSchema } from './movieModel';
+import Movie, { MovieType } from './movieDbModel';
 
 export const saveMovie = async (
-  movie: typeof MovieSchema
+  movie: MovieType
 ): Promise<mongoose.Document> => {
   const newMovie = new Movie(movie);
   return await newMovie.save();
