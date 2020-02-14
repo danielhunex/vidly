@@ -1,14 +1,14 @@
 import mongoose from '@DataAccess';
-import { GenreSchema, GenreType } from '@Resources/genre';
+import { GenreSchema, GenreDbModel } from '@Resources/genre';
 
-export interface MovieType extends mongoose.Document {
+export interface MovieDbModel extends mongoose.Document {
   title: string;
   numberInStock: number;
   dailyRentalRate: number;
-  genre: GenreType;
+  genre: GenreDbModel;
 }
 
-export const MovieSchema = new mongoose.Schema({
+const schemaDefinition = {
   title: {
     type: String,
     trim: true,
@@ -28,12 +28,8 @@ export const MovieSchema = new mongoose.Schema({
     min: 0,
     max: 255
   },
-  genre: {
-    type: GenreSchema,
-    required: true
-  }
-});
+  genre: { type: GenreSchema, required: true }
+};
 
-const Movie = mongoose.model<MovieType>('movie', MovieSchema);
-
-export default Movie;
+export const MovieSchema = new mongoose.Schema(schemaDefinition);
+export const Movie = mongoose.model<MovieDbModel>('movie', MovieSchema);

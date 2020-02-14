@@ -1,20 +1,14 @@
 import express from 'express';
-import {
-  deleteGenre,
-  getGenreById,
-  getGenres,
-  postGenre,
-  putGenre
-} from './controller';
+import { get, getById, deleteById, post, put } from './controller';
 
 import asyncWrapper from '@Libs/asyncWrapper';
 
 const route = express.Router();
 
-route.get('/', asyncWrapper(getGenres));
-route.get('/:id', asyncWrapper(getGenreById));
-route.post('/', asyncWrapper(postGenre));
-route.put('/:id', asyncWrapper(putGenre));
-route.delete('/:id', asyncWrapper(deleteGenre));
+route.get('/', asyncWrapper(get));
+route.get('/:id', asyncWrapper(getById));
+route.post('/', asyncWrapper(post));
+route.put('/:id', asyncWrapper(put));
+route.delete('/:id', asyncWrapper(deleteById));
 
 export default route;

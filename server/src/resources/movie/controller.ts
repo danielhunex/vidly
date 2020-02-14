@@ -1,11 +1,19 @@
 import { Request, Response, NextFunction } from 'express';
-import * as svc from './service';
+import { getAll, postMovie } from './service/';
 
-export const postMovie = async (
+export const get = async (
+  req: Request,
+  res: Response,
+  _next: NextFunction
+): Promise<void> => {
+  res.send(await getAll());
+};
+
+export const post = async (
   req: Request,
   res: Response,
   _next: NextFunction
 ): Promise<void> => {
   const { body } = req;
-  res.send(await svc.postMovie(body));
+  res.send(await postMovie(body));
 };

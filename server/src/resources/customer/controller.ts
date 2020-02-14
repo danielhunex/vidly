@@ -1,14 +1,11 @@
 import { Request, Response } from 'express';
-import * as svc from './service';
+import * as svc from './service/';
 
-export const getCustomers = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const get = async (req: Request, res: Response): Promise<void> => {
   res.send(await svc.getCustomers());
 };
 
-export const getCustomerById = async (
+export const getById = async (
   req: Request,
   res: Response
 ): Promise<void | Response> => {
@@ -16,7 +13,7 @@ export const getCustomerById = async (
   res.send(await svc.getCustomerById(id));
 };
 
-export const postCustomer = async (
+export const post = async (
   req: Request,
   res: Response
 ): Promise<void | Response> => {
@@ -30,13 +27,13 @@ export const postCustomer = async (
   res.send(customer);
 };
 
-export const updateCustomer = async (
+export const put = async (
   req: Request,
   res: Response
 ): Promise<void | Response> => {
   const { id } = req.params;
   const { body } = req;
-  const customer = await svc.updateCustomer(id, {
+  const customer = await svc.putCustomer(id, {
     name: body.name,
     phone: body.phone,
     isGold: body.isGold
@@ -44,7 +41,7 @@ export const updateCustomer = async (
   res.send(customer);
 };
 
-export const deleteCustomer = async (
+export const deleteById = async (
   req: Request,
   res: Response
 ): Promise<void | Response> => {

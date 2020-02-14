@@ -1,44 +1,47 @@
 import { Request, Response } from 'express';
-import * as svc from './service';
+import {
+  deleteGenre,
+  getGenreById,
+  getGenres,
+  postGenre,
+  putGenre
+} from './service';
 import VidlyError from '@Libs/vidlyError';
-import { Genre } from './genreDbModel';
+import { Genre } from './dal';
 
-export const getGenres = async (
-  _req: Request,
-  res: Response
-): Promise<void> => {
-  res.send(await svc.getGenres());
+export const get = async (_req: Request, res: Response): Promise<void> => {
+  res.send(await getGenres());
 };
 
-export const getGenreById = async (
+export const getById = async (
   req: Request,
   res: Response
 ): Promise<void | Response> => {
   const { id } = req.params;
-  const genre = await svc.getGenreById(id);
+  const genre = await getGenreById(id);
   if (!genre) {
     throw new VidlyError(404, `Genre with id ${id} not found`);
   }
   res.send(genre);
 };
 
-export const postGenre = async (
+export const post = async (
   req: Request,
   res: Response
 ): Promise<void | Response> => {
   const { body } = req;
   const { name } = body;
-  res.send(await svc.postGenre(new Genre({ name })));
+  res.send(await postGenre(new Genre({ name })));
 };
 
-export const putGenre = async (
+export const put = async (
   req: Request,
   res: Response
 ): Promise<void | Response> => {
   const { id } = req.params;
   const { body } = req;
   const { name } = body;
-  const genre = await svc.putGenre(id, { name });
+  const genre = await putGenre(id, { name });
 
   if (!genre) {
     throw new VidlyError(404, `Genre with id ${id} not found`);
@@ -46,12 +49,12 @@ export const putGenre = async (
   res.send(genre);
 };
 
-export const deleteGenre = async (
+export const deleteById = async (
   req: Request,
   res: Response
 ): Promise<void | Response> => {
   const { id } = req.params;
-  const genre = await svc.deleteGenre(id);
+  const genre = await deleteGenre(id);
   if (!genre) {
     throw new VidlyError(404, `Genre with id ${id} not found`);
   }

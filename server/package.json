@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "build": "tsc",
-    "prod": "node dist\\index.js",
-    "start": "node --inspect  -r ts-node/register index.ts",
+    "build": "rimraf ./dist && tsc",
+    "start": "npm run build && node dist/index.js",
     "debug": "node --inspect -r ts-node/register index.ts",
     "dev": "nodemon index.ts",
     "lint": "eslint .\\src\\**\\*.ts",
@@ -48,6 +46,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
+    "rimraf": "^3.0.2",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5"
   }
