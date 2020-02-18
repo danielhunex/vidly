@@ -1,12 +1,24 @@
 import mongoose from '@DataAccess';
 import VidlyError from '@Libs/vidlyError';
 
-import { Movie, insert, query, MovieDbModel } from '../dal';
-import { queryById } from '@Resources/genre/dal';
+import {
+  Movie,
+  MovieDocument,
+  insertGenre,
+  queryMoviesById,
+  queryMovies
+} from '../dal';
+import { queryGenreById as queryMovieById } from '@Resources/genre/dal';
 import { MovieApiModel, validate } from './movieApiModel';
 
-export const getAll = async (): Promise<MovieDbModel[]> => {
-  return await query();
+export const getAll = async (): Promise<MovieDocument[]> => {
+  return await queryMovies();
+};
+
+export const getMovieById = async (
+  id: string
+): Promise<MovieDocument | null> => {
+  return await queryMoviesById(id);
 };
 
 export const postMovie = async (
@@ -17,7 +29,7 @@ export const postMovie = async (
     throw new VidlyError(400, error.details[0].message);
   }
   const { genreId } = movie;
-  const genreSelected = await queryById(genreId);
+  const genreSelected = await queryMovieById(genreId);
 
   if (!genreSelected) {
     throw new VidlyError(404, `Genre with id ${genreId} does not exist`);
@@ -33,5 +45,5 @@ export const postMovie = async (
     }
   });
 
-  return await insert(newMovie);
+  return await insertGenre(newMovie);
 };

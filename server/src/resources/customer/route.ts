@@ -1,7 +1,7 @@
 import express from 'express';
 
 import asyncWrapper from '@Libs/asyncWrapper';
-import { getById, get, post, put, deleteById } from './controller';
+import { getById, get, post, put, deleteById, patch } from './controller';
 
 const route = express.Router();
 
@@ -9,6 +9,7 @@ route.get('/', asyncWrapper(get));
 route.get('/:id', asyncWrapper(getById));
 route.post('/', asyncWrapper(post));
 route.put('/:id', asyncWrapper(put));
+route.patch('/:id', asyncWrapper(patch));
 route.delete('/:id', asyncWrapper(deleteById));
 
 export default route;

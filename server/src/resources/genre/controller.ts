@@ -31,7 +31,7 @@ export const post = async (
 ): Promise<void | Response> => {
   const { body } = req;
   const { name } = body;
-  res.send(await postGenre(new Genre({ name })));
+  res.send(await postGenre({ name }));
 };
 
 export const put = async (

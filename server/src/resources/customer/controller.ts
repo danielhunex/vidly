@@ -33,11 +33,17 @@ export const put = async (
 ): Promise<void | Response> => {
   const { id } = req.params;
   const { body } = req;
-  const customer = await svc.putCustomer(id, {
-    name: body.name,
-    phone: body.phone,
-    isGold: body.isGold
-  });
+  const customer = await svc.putCustomer(id, body);
+  res.send(customer);
+};
+
+export const patch = async (
+  req: Request,
+  res: Response
+): Promise<void | Response> => {
+  const { id } = req.params;
+  const { body } = req;
+  const customer = await svc.patchCustomer(id, body);
   res.send(customer);
 };
 

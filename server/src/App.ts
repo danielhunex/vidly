@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import { customerRoute } from '@Resources/customer';
 import { genreRoute } from '@Resources/genre';
 import { movieRoute } from '@Resources/movie';
+import { rentalRoute } from '@Resources/rental';
 
 import applyMiddlewares, { handleError } from '@Middlewares';
 
@@ -28,6 +29,7 @@ if (app.get('env') === 'development') {
 app.use('/api/genres', genreRoute);
 app.use('/api/customers', customerRoute);
 app.use('/api/movies', movieRoute);
+app.use('/api/rentals', rentalRoute);
 
 applyMiddlewares(app);
 app.use(handleError);

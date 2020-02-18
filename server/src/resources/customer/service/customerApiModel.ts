@@ -1,9 +1,10 @@
 import Joi from '@hapi/joi';
 
+//Nullable fields so that they can be used for patch requests
 export interface CustomerApiModel {
-  name: string;
-  phone: string;
-  isGold: boolean;
+  name?: string;
+  phone?: string;
+  isGold?: boolean;
 }
 
 export const validate = (customer: CustomerApiModel): Joi.ValidationResult => {

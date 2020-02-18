@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { getAll, postMovie } from './service/';
+import { getAll, postMovie, getMovieById } from './service/';
 
 export const get = async (
   req: Request,
@@ -7,6 +7,15 @@ export const get = async (
   _next: NextFunction
 ): Promise<void> => {
   res.send(await getAll());
+};
+
+export const getById = async (
+  req: Request,
+  res: Response,
+  _next: NextFunction
+): Promise<void> => {
+  const { id } = req.params;
+  res.send(await getMovieById(id));
 };
 
 export const post = async (

@@ -1,25 +1,38 @@
-import { GenreDbModel, Genre } from './genreDbModel';
+import { GenreDbDocument, GenreDbModel, Genre } from './genreDbModel';
+import VidlyError from '@Libs/vidlyError';
 
-export const queryAll = async (): Promise<GenreDbModel[]> => {
+export const queryGenres = async (): Promise<GenreDbDocument[]> => {
   return await Genre.find();
 };
 
-export const queryById = async (id: string): Promise<GenreDbModel | null> => {
+export const queryGenreById = async (
+  id: string
+): Promise<GenreDbDocument | null> => {
   return await Genre.findById(id);
 };
 
-export const insert = async (genre: GenreDbModel): Promise<GenreDbModel> => {
+export const insertCustomer = async (
+  genre: GenreDbModel
+): Promise<GenreDbDocument> => {
   const newGenre = new Genre(genre);
   return await newGenre.save();
 };
 
-export const update = async (
+export const updateGenre = async (
   id: string,
-  genre: { name: string }
-): Promise<GenreDbModel | null> => {
-  return await Genre.findOneAndUpdate({ _id: id }, genre, { new: true });
+  genre: GenreDbModel
+): Promise<GenreDbDocument | null> => {
+  const genreDb = await Genre.findById(id);
+
+  if (!genreDb) {
+    throw new VidlyError(404, `Genre with id ${id} not found`);
+  }
+  genreDb.name = genre.name;
+  return await genreDb.save();
 };
 
-export const purge = async (id: string): Promise<GenreDbModel | null> => {
+export const purgeGenre = async (
+  id: string
+): Promise<GenreDbDocument | null> => {
   return await Genre.findByIdAndRemove(id);
 };
